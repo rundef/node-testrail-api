@@ -1,0 +1,22 @@
+{
+  "name": "testrail-api",
+  "version": "1.0.0",
+  "description": "TestRail API Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "lint": "./node_modules/.bin/eslint index.js"
+  },
+  "author": "rundef",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^2.12.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.5.3",
+    "nock": "^8.0.0"
+  },
+  "dependencies": {
+    "request": "^2.72.0"
+  }
+}
