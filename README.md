@@ -1,7 +1,8 @@
 ## testrail-api
 
 [![npm version](https://badge.fury.io/js/testrail-api.svg)](http://badge.fury.io/js/testrail-api) 
-[![Coverage Status](https://coveralls.io/repos/rundef/uniquefilename/badge.svg?branch=master&service=github)](https://coveralls.io/github/rundef/uniquefilename?branch=master)
+[![Travis](https://travis-ci.org/rundef/node-testrail-api.svg?branch=master)](https://travis-ci.org/rundef/node-testrail-api?branch=master) 
+[![Coverage Status](https://coveralls.io/repos/rundef/node-testrail-api/badge.svg?branch=master&service=github)](https://coveralls.io/github/rundef/node-testrail-api?branch=master)
 
 > An API wrapper for TestRail, similar to [node-testrail](https://www.npmjs.com/package/node-testrail) - but with error handling and unit testing.
 
