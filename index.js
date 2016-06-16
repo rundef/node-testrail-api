@@ -7,13 +7,13 @@ var qs = require('querystring');
 
 // ----- API Reference: http://docs.gurock.com/testrail-api2/start -----
 
-function TestRail(host, user, password) {
-  this.host = host;
-  this.user = user;
-  this.password = password;
+function TestRail(options) {
+  this.host = options.host;
+  this.user = options.user;
+  this.password = options.password;
 
   this.uri = '/index.php?/api/v2/';
-};
+}
 
 TestRail.prototype.apiGet = function (apiMethod, queryVariables, callback) {
   var url = this.host + this.uri + apiMethod;
@@ -149,8 +149,16 @@ TestRail.prototype.getMilestone = function (id, callback) {
   return this.apiGet('get_milestone/' + id, callback);
 };
 
-TestRail.prototype.getMilestones = function (project_id, callback) {
-  return this.apiGet('get_milestones/' + project_id, callback);
+TestRail.prototype.getMilestones = function (project_id, filters, callback) {
+  var uri = 'get_milestones/' + project_id;
+
+  if(typeof filters == 'function') {
+    callback = filters;
+    return this.apiGet(uri, callback);
+  }
+  else {
+    return this.apiGet(uri, filters, callback);
+  }
 };
 
 TestRail.prototype.addMilestone = function (project_id,data, callback) {
@@ -171,11 +179,19 @@ TestRail.prototype.getPlan = function (id, callback) {
   return this.apiGet('get_plan/' + id, callback);
 };
 
-TestRail.prototype.getPlans = function (project_id, callback) {
-  return this.apiGet('get_plans/' + project_id, callback);
+TestRail.prototype.getPlans = function (project_id, filters, callback) {
+  var uri = 'get_plans/' + project_id;
+
+  if(typeof filters == 'function') {
+    callback = filters;
+    return this.apiGet(uri, callback);
+  }
+  else {
+    return this.apiGet(uri, filters, callback);
+  }
 };
 
-TestRail.prototype.addPlan = function (project_id,data, callback) {
+TestRail.prototype.addPlan = function (project_id, data, callback) {
   return this.apiPost('add_plan/' + project_id, JSON.stringify(data), callback);
 };
 
@@ -187,8 +203,8 @@ TestRail.prototype.updatePlan = function (plan_id, data, callback) {
   return this.apiPost('update_plan/' + plan_id, JSON.stringify(data), callback);
 };
 
-TestRail.prototype.updatePlanEntry = function (entry_id, data, callback) {
-  return this.apiPost('update_plan/' + entry_id, JSON.stringify(data), callback);
+TestRail.prototype.updatePlanEntry = function (plan_id, entry_id, data, callback) {
+  return this.apiPost('update_plan_entry/' + plan_id + '/' + entry_id, JSON.stringify(data), callback);
 };
 
 TestRail.prototype.closePlan = function (plan_id, callback) {
@@ -199,7 +215,7 @@ TestRail.prototype.deletePlan = function (plan_id, callback) {
   return this.apiPost('delete_plan/' + plan_id, callback);
 };
 
-TestRail.prototype.deletePlan = function (plan_id, entry_id, callback) {
+TestRail.prototype.deletePlanEntry = function (plan_id, entry_id, callback) {
   return this.apiPost('delete_plan_entry/' + plan_id + '/' + entry_id, callback);
 };
 
@@ -281,7 +297,7 @@ TestRail.prototype.addResult = function (test_id, data, callback) {
   return this.apiPost('add_result/' + test_id, JSON.stringify(data), callback);
 };
 
-TestRail.prototype.getResultForCase = function (run_id, case_id, data, callback) {
+TestRail.prototype.addResultForCase = function (run_id, case_id, data, callback) {
   return this.apiPost('add_result_for_case/' + run_id + '/' + case_id, JSON.stringify(data), callback);
 };
 
@@ -289,8 +305,8 @@ TestRail.prototype.addResults = function (run_id, data, callback) {
   return this.apiPost('add_results/' + run_id, JSON.stringify(data), callback);
 };
 
-TestRail.prototype.getResultsForCase = function (run_id, data, callback) {
-  return this.apiPost('add_resultrun_id_for_case/' + run_id, JSON.stringify(data), callback);
+TestRail.prototype.addResultsForCases = function (run_id, data, callback) {
+  return this.apiPost('add_results_for_cases/' + run_id, JSON.stringify(data), callback);
 };
 
 // ----- Result Fields -----
@@ -432,7 +448,7 @@ TestRail.prototype.getUsers = function (callback) {
 // ----------
 
 
-module.exports = function (host, user, password) {
-  var apiWrapper = new TestRail(host, user, password);
+module.exports = function (options) {
+  var apiWrapper = new TestRail(options);
   return apiWrapper;
 };

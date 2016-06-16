@@ -5,12 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "lint": "./node_modules/.bin/eslint index.js"
+    "lint": "./node_modules/.bin/eslint index.js",
+    "cover": "./node_modules/.bin/istanbul cover --report html node_modules/.bin/_mocha --check-leaks",
+    "travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "author": "rundef",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
     "eslint": "^2.12.0",
     "istanbul": "^0.4.3",
     "mocha": "^2.5.3",
