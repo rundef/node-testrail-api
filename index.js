@@ -161,7 +161,7 @@ TestRail.prototype.getMilestones = function (project_id, filters, callback) {
   }
 };
 
-TestRail.prototype.addMilestone = function (project_id,data, callback) {
+TestRail.prototype.addMilestone = function (project_id, data, callback) {
   return this.apiPost('add_milestone/' + project_id, JSON.stringify(data), callback);
 };
 

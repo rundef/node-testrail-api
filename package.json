@@ -1,17 +1,27 @@
 {
   "name": "testrail-api",
   "version": "1.0.0",
-  "description": "TestRail API Client",
+  "description": "A complete API wrapper for TestRail - with 100% code coverage",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "./node_modules/.bin/_mocha",
     "lint": "./node_modules/.bin/eslint index.js",
     "cover": "./node_modules/.bin/istanbul cover --report html node_modules/.bin/_mocha --check-leaks",
     "travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
-  "author": "rundef",
+  "keywords": [
+    "testrail"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rundef/node-testrail-api.git"
+  },
+  "author": "Mickael Burguet <www.rundef.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">= 0.12.0"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
