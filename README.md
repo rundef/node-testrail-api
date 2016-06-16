@@ -1,4 +1,4 @@
-## testrail-api
+# testrail-api
 
 [![npm version](https://badge.fury.io/js/testrail-api.svg)](http://badge.fury.io/js/testrail-api) 
 [![Travis](https://travis-ci.org/rundef/node-testrail-api.svg?branch=master)](https://travis-ci.org/rundef/node-testrail-api?branch=master) 
@@ -8,7 +8,7 @@
 
 The TestRail API is [described here](http://docs.gurock.com/testrail-api2/start).
 
-### Usage
+## Usage
 
 First, you will have to initialize the API wrapper :
 
@@ -18,16 +18,16 @@ var Testrail = require('testrail-api');
 var testrail = new Testrail({
   host: 'https://rundef.testrail.com', 
   user: 'username', 
-  password: 'password'
+  password: 'password or api key'
 });
 ```
 
-#### Cases
+### Cases
 
 > List cases
 
 ```javascript
-testrail.getCases(/*PROJECT_ID=*/1, /*FILTERS=*/{}, function (err, cases) {
+testrail.getCases(/*PROJECT_ID=*/1, /*FILTERS=*/{ suite_id: 3, section_id: 4 }, function (err, cases) {
   console.log(cases);
 });
 ```
@@ -64,7 +64,7 @@ testrail.deleteCase(/*CASE_ID=*/1, function (err, response) {
 });
 ```
 
-#### Case Fields
+### Case Fields
 
 > List case fields
 
@@ -74,7 +74,7 @@ testrail.getCaseFields(function (err, caseFields) {
 });
 ```
 
-#### Case Types
+### Case Types
 
 > List case types
 
@@ -84,13 +84,67 @@ testrail.getCaseTypes(function (err, caseTypes) {
 });
 ```
 
-#### Configurations
+### Configurations
 
-todo
+> List configurations
 
-#### Milestones
+```javascript
+testrail.getConfigs(/*PROJECT_ID=*/1, function (err, configs) {
+  console.log(configs);
+});
+```
 
-> List projects
+> Add a configuration group
+
+```javascript
+testrail.addConfigGroup(/*PROJECT_ID=*/1, /*CONTENT=*/{}, function (err, config_group) {
+  console.log(config_group);
+});
+```
+
+> Add a configuration
+
+```javascript
+testrail.addConfig(/*CONFIGURATION_GROUP_ID=*/1, /*CONTENT=*/{}, function (err, config) {
+  console.log(config);
+});
+```
+
+> Update a configuration group
+
+```javascript
+testrail.updateConfigGroup(/*CONFIGURATION_GROUP_ID=*/1, /*CONTENT=*/{}, function (err, config_group) {
+  console.log(config_group);
+});
+```
+
+> Update a configuration
+
+```javascript
+testrail.updateConfig(/*CONFIGURATION_ID=*/1, /*CONTENT=*/{}, function (err, config) {
+  console.log(config);
+});
+```
+
+> Delete a configuration group
+
+```javascript
+testrail.deleteConfigurationGroup(/*CONFIGURATION_GROUP_ID=*/1, function (err, response) {
+  console.log(response);
+});
+```
+
+> Delete a configuration
+
+```javascript
+testrail.deleteConfig(/*CONFIGURATION_ID=*/1, function (err, response) {
+  console.log(response);
+});
+```
+
+### Milestones
+
+> List milestones
 
 ```javascript
 testrail.getMilestones(/*PROJECT_ID=*/1, /*FILTERS=*/{}, function (err, milestones) {
@@ -130,11 +184,81 @@ testrail.deleteMilestone(/*MILESTONE_ID=*/1, function (err, response) {
 });
 ```
 
-#### Plans
+### Plans
 
-todo
+> List plans
 
-#### Priorities
+```javascript
+testrail.getPlans(/*PROJECT_ID=*/1, /*FILTERS=*/{}, function (err, plans) {
+  console.log(plans);
+});
+```
+
+> Get a plan
+
+```javascript
+testrail.getPlan(/*PLAN_ID=*/1, function (err, plan) {
+  console.log(plan);
+});
+```
+
+> Add a plan
+
+```javascript
+testrail.addPlan(/*PROJECT_ID=*/1, /*CONTENT=*/{}, function (err, plan) {
+  console.log(plan);
+});
+```
+
+> Add a plan entry
+
+```javascript
+testrail.addPlanEntry(/*PLAN_ID=*/1, /*CONTENT=*/{}, function (err, plan_entry) {
+  console.log(plan_entry);
+});
+```
+
+> Update a plan
+
+```javascript
+testrail.updatePlan(/*PLAN_ID=*/1, /*CONTENT=*/{}, function (err, plan) {
+  console.log(plan);
+});
+```
+
+> Update a plan entry
+
+```javascript
+testrail.updatePlanEntry(/*PLAN_ID=*/1, /*PLAN_ENTRY_ID=*/2, /*CONTENT=*/{}, function (err, plan_entry) {
+  console.log(plan_entry);
+});
+```
+
+> Close a plan
+
+```javascript
+testrail.closePlan(/*PLAN_ID=*/1, function (err, plan) {
+  console.log(plan);
+});
+```
+
+> Delete a plan
+
+```javascript
+testrail.deletePlan(/*PLAN_ID=*/1, function (err, response) {
+  console.log(response);
+});
+```
+
+> Delete a plan entry
+
+```javascript
+testrail.deletePlanEntry(/*PLAN_ID=*/1, /*PLAN_ENTRY_ID=*/2, function (err, response) {
+  console.log(response);
+});
+```
+
+### Priorities
 
 ```javascript
 testrail.getPriorities(function (err, priorities) {
@@ -142,7 +266,7 @@ testrail.getPriorities(function (err, priorities) {
 });
 ```
 
-#### Projects
+### Projects
 
 > List projects
 
@@ -184,11 +308,65 @@ testrail.deleteProject(/*PROJECT_ID=*/1, function (err, response) {
 });
 ```
 
-#### Results
+### Results
 
-todo
+> Get results
 
-#### Result Fields
+```javascript
+testrail.getResults(/*TEST_ID=*/1, /*FILTERS=*/{}, function (err, results) {
+  console.log(results);
+});
+```
+
+> Get results for case
+
+```javascript
+testrail.getResultsForCase(/*RUN_ID=*/1, /*CASE_ID=*/2, /*FILTERS=*/{}, function (err, results) {
+  console.log(results);
+});
+```
+
+> Get results for run
+
+```javascript
+testrail.getResultsForRun(/*RUN_ID=*/1, /*FILTERS=*/{}, function (err, results) {
+  console.log(results);
+});
+```
+
+> Add a result
+
+```javascript
+testrail.addResult(/*TEST_ID=*/1, /*CONTENT=*/{}, function (err, result) {
+  console.log(result);
+});
+```
+
+> Add a result for case
+
+```javascript
+testrail.addResultForCase(/*RUN_ID=*/1, /*CASE_ID=*/2, /*CONTENT=*/{}, function (err, result) {
+  console.log(result);
+});
+```
+
+> Add results
+
+```javascript
+testrail.addResults(/*RUN_ID=*/1, /*CONTENT=*/{}, function (err, results) {
+  console.log(results);
+});
+```
+
+> Add results for cases
+
+```javascript
+testrail.addResultsForCases(/*RUN_ID=*/1, /*CONTENT=*/{}, function (err, results) {
+  console.log(results);
+});
+```
+
+### Result Fields
 
 ```javascript
 testrail.getResultFields(function (err, resultFields) {
@@ -196,7 +374,7 @@ testrail.getResultFields(function (err, resultFields) {
 });
 ```
 
-#### Runs
+### Runs
 
 > List runs
 
@@ -217,7 +395,7 @@ testrail.getRun(/*RUN_ID=*/1, function (err, run) {
 > Add a run
 
 ```javascript
-testrail.addRun(/*RUN_ID=*/1, /*CONTENT=*/{}, function (err, run) {
+testrail.addRun(/*PROJECT_ID=*/1, /*CONTENT=*/{}, function (err, run) {
   console.log(run);
 });
 ```
@@ -238,7 +416,7 @@ testrail.deleteRun(/*RUN_ID=*/1, function (err, response) {
 });
 ```
 
-#### Sections
+### Sections
 
 > List sections
 
@@ -280,7 +458,7 @@ testrail.deleteSection(/*SECTION_ID=*/1, function (err, response) {
 });
 ```
 
-#### Statuses
+### Statuses
 
 ```javascript
 testrail.getStatuses(function (err, statuses) {
@@ -288,7 +466,7 @@ testrail.getStatuses(function (err, statuses) {
 });
 ```
 
-#### Suites
+### Suites
 
 > List suites
 
@@ -330,7 +508,7 @@ testrail.deleteSuite(/*SUITE_ID=*/1, function (err, response) {
 });
 ```
 
-#### Templates
+### Templates
 
 ```javascript
 testrail.getTemplates(/*PROJECT_ID=*/1, function (err, template) {
@@ -338,7 +516,7 @@ testrail.getTemplates(/*PROJECT_ID=*/1, function (err, template) {
 });
 ```
 
-#### Tests
+### Tests
 
 > List tests
 
@@ -356,7 +534,7 @@ testrail.getTest(/*TEST_ID=*/1, function (err, test) {
 });
 ```
 
-#### Users
+### Users
 
 > List users
 

@@ -195,7 +195,7 @@ TestRail.prototype.addPlan = function (project_id, data, callback) {
   return this.apiPost('add_plan/' + project_id, JSON.stringify(data), callback);
 };
 
-TestRail.prototype.addPlanEntry = function (plan_id,data, callback) {
+TestRail.prototype.addPlanEntry = function (plan_id, data, callback) {
   return this.apiPost('add_plan_entry/' + plan_id, JSON.stringify(data), callback);
 };
 
