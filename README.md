@@ -35,24 +35,24 @@ testrail.getCases(/*PROJECT_ID=*/1, /*FILTERS=*/{ suite_id: 3, section_id: 4 }, 
 > Get a case
 
 ```javascript
-testrail.getCase(/*CASE_ID=*/1, function (err, case) {
-  console.log(case);
+testrail.getCase(/*CASE_ID=*/1, function (err, testcase) {
+  console.log(testcase);
 });
 ```
 
 > Add a case
 
 ```javascript
-testrail.addCase(/*SECTION_ID=*/1, /*CONTENT=*/{}, function (err, case) {
-  console.log(case);
+testrail.addCase(/*SECTION_ID=*/1, /*CONTENT=*/{}, function (err, testcase) {
+  console.log(testcase);
 });
 ```
 
 > Update a case
 
 ```javascript
-testrail.updateCase(/*CASE_ID=*/1, /*CONTENT=*/{}, function (err, case) {
-  console.log(case);
+testrail.updateCase(/*CASE_ID=*/1, /*CONTENT=*/{}, function (err, testcase) {
+  console.log(testcase);
 });
 ```
 
