@@ -11,6 +11,7 @@ describe('sections api', function() {
   });
 
   nock('https://rundef.testrail.com')
+   .persist()
    .get(testrail.uri + 'get_section/1')
    .reply(200, {
       "depth": 0,
@@ -24,6 +25,7 @@ describe('sections api', function() {
 
 
   nock('https://rundef.testrail.com')
+   .persist()
    .get(testrail.uri + 'get_sections/1')
    .reply(200, [
       {
@@ -104,6 +106,12 @@ describe('sections api', function() {
     });
   });
 
+  it('Get one (Promise)', function (done) {
+    testrail.getSection(1).then(function (section) {
+      expect(section).to.be.an.object;
+      done();
+    }).catch(done);
+  });
 
   it('Get all', function (done) {
     testrail.getSections(1, function (err, sections) {
@@ -111,6 +119,13 @@ describe('sections api', function() {
       expect(sections).to.be.an.array;
       done();
     });
+  });
+
+  it('Get all (Promise)', function (done) {
+    testrail.getSections(1).then(function (sections) {
+      expect(sections).to.be.an.array;
+      done();
+    }).catch(done);
   });
 
 

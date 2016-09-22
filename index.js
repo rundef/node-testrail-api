@@ -2,7 +2,7 @@
 
 var request = require('request');
 var qs = require('querystring');
-
+var Promise = require('bluebird');
 
 
 // ----- API Reference: http://docs.gurock.com/testrail-api2/start -----
@@ -23,7 +23,7 @@ TestRail.prototype.apiGet = function (apiMethod, queryVariables, callback) {
     queryVariables = null;
   }
 
-  this._callAPI('get', url, queryVariables, null, callback);
+  return this._callAPI('get', url, queryVariables, null, callback);
 };
 
 TestRail.prototype.apiPost = function (apiMethod, body, queryVariables, callback) {
@@ -38,7 +38,7 @@ TestRail.prototype.apiPost = function (apiMethod, body, queryVariables, callback
     queryVariables = null;
   }
 
-  this._callAPI('post', url, queryVariables, body, callback);
+  return this._callAPI('post', url, queryVariables, body, callback);
 };
 
 TestRail.prototype._callAPI = function (method, url, queryVariables, body, callback) {
@@ -51,22 +51,38 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
     headers: {
       'content-type': 'application/json',
       'accept': 'application/json'
-    }
+    },
+    rejectUnauthorized: false
   };
 
   if(body != null) {
     requestArguments.body = body;
   }
 
-  return request[method](requestArguments, function(err, res, body) {
-    if(err) {
-      return callback(err);
-    }
-    if(res.statusCode != 200) {
-      return callback(JSON.parse(body));
-    }
-    return callback(null, JSON.parse(body));
-  }).auth(this.user, this.password, true);
+  if (typeof callback === 'function') {
+    return request[method](requestArguments, function(err, res, body) {
+      if(err) {
+        return callback(err);
+      }
+      if(res.statusCode != 200) {
+        return callback(JSON.parse(body));
+      }
+      return callback(null, JSON.parse(body));
+    }).auth(this.user, this.password, true);
+  }
+  else {
+    return new Promise(function (resolve, reject) {
+      return request[method](requestArguments, function(err, res, body) {
+        if(err) {
+          return reject(err);
+        }
+        if(res.statusCode != 200) {
+          return reject(JSON.parse(body));
+        }
+        return resolve(JSON.parse(body));
+      }).auth(this.user, this.password, true);
+    }.bind(this));
+  }
 };
 
 

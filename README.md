@@ -32,6 +32,16 @@ testrail.getCases(/*PROJECT_ID=*/1, /*FILTERS=*/{ suite_id: 3, section_id: 4 }, 
 });
 ```
 
+You can also use Promises with all the functions:
+
+```javascript
+testrail.getCases(1).then(function (cases)
+  console.log(cases);
+}).catch(function (err) {
+  console.log('error', err);
+});
+```
+
 > Get a case
 
 ```javascript
