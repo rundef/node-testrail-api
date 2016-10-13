@@ -1,5 +1,3 @@
-'use strict';
-
 var request = require('request');
 var qs = require('querystring');
 var Promise = require('bluebird');
@@ -464,7 +462,4 @@ TestRail.prototype.getUsers = function (callback) {
 // ----------
 
 
-module.exports = function (options) {
-  var apiWrapper = new TestRail(options);
-  return apiWrapper;
-};
+module.exports = TestRail;

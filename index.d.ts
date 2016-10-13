@@ -1,5 +1,5 @@
-export class TestrailApi {
-    constructor(config: any);
+interface TestrailApiClient {
+    new (options: any): TestrailApiClient;
 
     getCase(id: number, callback?: Function): any;
     getCases(project_id: number, filters?: any, callback?: Function): any;
@@ -77,3 +77,6 @@ export class TestrailApi {
     getUserByEmail(email: string, callback?: Function): any;
     getUsers(callback?: Function): any;
 }
+
+var _: TestrailApiClient;
+export = _;
