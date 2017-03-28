@@ -63,7 +63,11 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
         return callback(err);
       }
       if(res.statusCode != 200) {
-        return callback(JSON.parse(body));
+        var errData = body;
+        try {
+          errData = JSON.parse(body);
+        } catch (err) {}
+        return callback(errData);
       }
       return callback(null, JSON.parse(body));
     }).auth(this.user, this.password, true);
@@ -75,7 +79,11 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
           return reject(err);
         }
         if(res.statusCode != 200) {
-          return reject(JSON.parse(body));
+          var errData = body;
+          try {
+            errData = JSON.parse(body);
+          } catch (err) {}
+          return reject(errData);
         }
         return resolve(JSON.parse(body));
       }).auth(this.user, this.password, true);
