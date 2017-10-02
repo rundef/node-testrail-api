@@ -1,6 +1,6 @@
 {
   "name": "testrail-api",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "A complete API wrapper for TestRail - with 100% code coverage",
   "main": "index.js",
   "scripts": {

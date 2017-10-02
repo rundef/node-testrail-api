@@ -4,7 +4,7 @@
 [![Travis](https://travis-ci.org/rundef/node-testrail-api.svg?branch=master)](https://travis-ci.org/rundef/node-testrail-api?branch=master) 
 [![Coverage Status](https://coveralls.io/repos/github/rundef/node-testrail-api/badge.svg?branch=master)](https://coveralls.io/github/rundef/node-testrail-api?branch=master)
 
-> An API wrapper for TestRail, similar to [node-testrail](https://www.npmjs.com/package/node-testrail) - but with error handling and unit testing.
+> An API wrapper for TestRail with error handling and unit testing.
 
 The TestRail API is [described here](http://docs.gurock.com/testrail-api2/start).
 
