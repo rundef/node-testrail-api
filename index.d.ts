@@ -1,4 +1,90 @@
-declare module 'testrail-api' {
+import t = TestrailApiClient;
+
+declare class TestrailApiClient {
+    constructor(options: any);
+
+    getCase(id: number, callback?: t.Callback<t.ICase>): Promise<t.ICase>;
+    getCases(project_id: number, filters?: t.ICaseFilters, callback?: t.Callback<t.ICase[]>): Promise<t.ICase[]>;
+    addCase(section_id: number, data: t.ICaseUpdate, callback?: t.Callback<t.ICase>): Promise<t.ICase>;
+    updateCase(case_id: number, data: t.ICaseUpdate, callback?: t.Callback<t.ICase>): Promise<t.ICase>;
+    deleteCase(case_id: number, callback?: t.Callback<void>): Promise<void>;
+
+    getCaseFields(callback?: t.Callback<t.ICaseField[]>): Promise<t.ICaseField[]>;
+    getCaseTypes(callback?: t.Callback<t.ICaseType[]>): Promise<t.ICaseType[]>;
+
+    getConfigs(project_id: number, callback?: t.Callback<t.IConfigurationGroup>): Promise<t.IConfigurationGroup>;
+    addConfigGroup(project_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfigurationGroup>): Promise<t.IConfigurationGroup>;
+    addConfig(config_group_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfiguration>): Promise<t.IConfiguration>;
+    updateConfigGroup(config_group_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfigurationGroup>): Promise<t.IConfigurationGroup>;
+    updateConfig(config_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfiguration>): Promise<t.IConfiguration>;
+    deleteConfigGroup(config_group_id: number, callback?: t.Callback<void>): Promise<void>;
+    deleteConfig(config_id: number, callback?: t.Callback<void>): Promise<void>;
+
+    getMilestone(id: number, callback?: t.Callback<t.IMilestone>): Promise<t.IMilestone>;
+    getMilestones(project_id: number, filters?: t.IMilestoneFilters, callback?: t.Callback<t.IMilestone[]>): Promise<t.IMilestone[]>;
+    addMilestone(project_id: number, data: t.INewMilestone, callback?: t.Callback<t.IMilestone>): Promise<t.IMilestone>;
+    updateMilestone(milestone_id: number, data: t.IMilestoneUpdate, callback?: t.Callback<t.IMilestone>): Promise<t.IMilestone>;
+    deleteMilestone(milestone_id: number, callback?: t.Callback<void>): Promise<void>;
+
+    getPlan(id: number, callback?: t.Callback<any>): Promise<any>;
+    getPlans(project_id: number, filters?: any, callback?: t.Callback<any>): Promise<any>;
+    addPlan(project_id: number, data: any, callback?: t.Callback<any>): Promise<any>;
+    addPlanEntry(plan_id: number, data: any, callback?: t.Callback<any>): Promise<any>;
+    updatePlan(plan_id: number, data: any, callback?: t.Callback<any>): Promise<any>;
+    updatePlanEntry(plan_id: number, entry_id: number, data: any, callback?: t.Callback<any>): Promise<any>;
+    closePlan(plan_id: number, callback?: t.Callback<any>): Promise<any>;
+    deletePlan(plan_id: number, callback?: t.Callback<void>): Promise<void>;
+    deletePlanEntry(plan_id: number, entry_id: number, callback?: t.Callback<void>): Promise<void>;
+
+    getPriorities(callback?: t.Callback<t.IPriority[]>): Promise<t.IPriority[]>;
+
+    getProject(id: number, callback?: t.Callback<t.IProject>): Promise<t.IProject>;
+    getProjects(filters?: t.IProjectFilters, callback?: t.Callback<t.IProject[]>): Promise<t.IProject[]>;
+    addProject(data: t.IProjectUpdate, callback?: t.Callback<t.IProject>): Promise<t.IProject>;
+    updateProject(project_id: number, data: t.IProjectUpdate, callback?: t.Callback<t.IProject>): Promise<t.IProject>;
+    deleteProject(project_id: number, callback?: t.Callback<void>): Promise<void>;
+
+    getResults(test_id: number, filters?: t.ITestResultFilters, callback?: t.Callback<t.ITestResult[]>): Promise<t.ITestResult[]>;
+    getResultsForCase(run_id: number, case_id: number, filters?: t.ITestResultFilters, callback?: t.Callback<t.ITestResult[]>): Promise<t.ITestResult[]>;
+    getResultsForRun(run_id: number, filters?: t.ITestResultsForRunFilters, callback?: t.Callback<t.ITestResult[]>): Promise<t.ITestResult[]>;
+    addResult(test_id: number, data: t.INewTestResult, callback?: t.Callback<t.ITestResult>): Promise<t.ITestResult>;
+    addResultForCase(run_id: number, case_id: number, data: t.INewTestResult, callback?: t.Callback<t.ITestResult>): Promise<t.ITestResult>;
+    addResults(run_id: number, data: t.INewTestResults, callback?: t.Callback<t.ITestResult[]>): Promise<t.ITestResult[]>;
+    addResultsForCases(run_id: number, data: t.INewTestResults, callback?: t.Callback<t.ITestResult[]>): Promise<t.ITestResult[]>;
+    getResultFields(callback?: t.Callback<t.ICaseField[]>): Promise<t.ICaseField[]>;
+
+    getRun(id: number, callback?: t.Callback<t.ITestRun>): Promise<t.ITestRun>;
+    getRuns(project_id: number, filters?: any, callback?: t.Callback<t.ITestRun[]>): Promise<t.ITestRun[]>;
+    addRun(project_id: number, data: t.INewTestRun, callback?: t.Callback<t.ITestRun>): Promise<t.ITestRun>;
+    updateRun(run_id: number, data: t.INewTestRun, callback?: t.Callback<t.ITestRun>): Promise<t.ITestRun>;
+    closeRun(run_id: number, callback?: t.Callback<t.ITestRun>): Promise<t.ITestRun>;
+    deleteRun(run_id: number, callback?: t.Callback<void>): Promise<void>;
+
+    getSection(id: number, callback?: t.Callback<t.ISection>): Promise<t.ISection>;
+    getSections(project_id: number, filters?: any, callback?: t.Callback<t.ISection>): Promise<t.ISection>;
+    addSection(project_id: number, data: t.INewSection, callback?: t.Callback<t.ISection>): Promise<t.ISection>;
+    updateSection(section_id: number, data: t.ISectionUpdate, callback?: t.Callback<t.ISection>): Promise<t.ISection>;
+    deleteSection(section_id: number, callback?: t.Callback<void>): Promise<void>;
+
+    getStatuses(callback?: t.Callback<t.ITestStatus[]>): Promise<t.ITestStatus[]>;
+
+    getSuite(id: number, callback?: t.Callback<t.ISuite>): Promise<t.ISuite>;
+    getSuites(project_id: number, callback?: t.Callback<t.ISuite[]>): Promise<t.ISuite[]>;
+    addSuite(project_id: number, data: t.INewSuite, callback?: t.Callback<t.ISuite>): Promise<t.ISuite>;
+    updateSuite(suite_id: number, data: t.INewSuite, callback?: t.Callback<t.ISuite>): Promise<t.ISuite>;
+    deleteSuite(suite_id: number, callback?: t.Callback<void>): Promise<void>;
+
+    getTemplates(project_id: number, callback?: t.Callback<t.ITemplate[]>): Promise<t.ITemplate[]>;
+
+    getTest(id: number, callback?: t.Callback<t.ITest>): Promise<t.ITest>;
+    getTests(run_id: number, filters: { status_id?: number | number[] }, callback?: t.Callback<t.ITest[]>): Promise<t.ITest[]>;
+
+    getUser(id: number, callback?: t.Callback<t.ITestrailUser>): Promise<t.ITestrailUser>;
+    getUserByEmail(email: string, callback?: t.Callback<t.ITestrailUser>): Promise<t.ITestrailUser>;
+    getUsers(callback?: t.Callback<t.ITestrailUser[]>): Promise<t.ITestrailUser[]>;
+}
+
+declare namespace TestrailApiClient {
     interface ITestResult {
         assignedto_id: number;
         comment: string;
@@ -16,11 +102,11 @@ declare module 'testrail-api' {
 
     interface INewTestResult {
         status_id: number;
-        comment: string;
-        version: string;
-        elapsed: number;
-        defects: string;
-        assignedto_id: number;
+        comment?: string;
+        version?: string;
+        elapsed?: number;
+        defects?: string;
+        assignedto_id?: number;
 
         [key: string]: CustomFieldType;
     }
@@ -91,7 +177,7 @@ declare module 'testrail-api' {
     interface ICaseFieldConfig {
         id: string;
         context: {
-            is_global: boolean;
+            is_global?: boolean;
             project_ids: number[];
         };
         options: {
@@ -99,8 +185,8 @@ declare module 'testrail-api' {
             default_value?: string;
             format?: string;
             is_required?: boolean;
-            has_actual: boolean;
-            has_expected: boolean;
+            has_actual?: boolean;
+            has_expected?: boolean;
             rows?: string;
         };
     }
@@ -121,7 +207,7 @@ declare module 'testrail-api' {
     }
 
     interface INewSection {
-        description: string;
+        description?: string;
         suite_id: number;
         parent_id: number;
         name: string;
@@ -142,16 +228,16 @@ declare module 'testrail-api' {
     interface ICaseFilters {
         suite_id?: number;
         section_id?: number;
-        created_after: number;
-        created_before: number;
-        created_by: string;
-        milestone_id: number;
-        priority_id: number;
-        template_id: number;
-        type_id: number;
-        updated_after: number;
-        updated_before: number;
-        updated_by: number;
+        created_after?: number;
+        created_before?: number;
+        created_by?: string;
+        milestone_id?: number;
+        priority_id?: number;
+        template_id?: number;
+        type_id?: number;
+        updated_after?: number;
+        updated_before?: number;
+        updated_by?: number;
     }
 
     interface ITestrailUser {
@@ -193,7 +279,8 @@ declare module 'testrail-api' {
         is_system: boolean;
         is_untested: boolean;
         label: string;
-        name: string;s
+        name: string;
+        s
     }
 
     interface ITestRun {
@@ -340,90 +427,6 @@ declare module 'testrail-api' {
     interface Callback<T> {
         (error: any, result: T): void;
     }
-
-    interface TestrailApiClient {
-        new (options: any): TestrailApiClient;
-
-        getCase(id: number, callback?: Callback<ICase>): Promise<ICase>;
-        getCases(project_id: number, filters?: ICaseFilters, callback?: Callback<ICase[]>): Promise<ICase[]>;
-        addCase(section_id: number, data: ICaseUpdate, callback?: Callback<ICase>): Promise<ICase>;
-        updateCase(case_id: number, data: ICaseUpdate, callback?: Callback<ICase>): Promise<ICase>;
-        deleteCase(case_id: number, callback?: Callback<void>): Promise<void>;
-        getCaseFields(callback?: Callback<ICaseField[]>): Promise<ICaseField[]>;
-        getCaseTypes(callback?: Callback<ICaseType[]>): Promise<ICaseType[]>;
-
-        getConfigs(project_id: number, callback?: Callback<IConfigurationGroup>): Promise<IConfigurationGroup>;
-        addConfigGroup(project_id: number, data: IConfigurationUpdate, callback?: Callback<IConfigurationGroup>): Promise<IConfigurationGroup>;
-        addConfig(config_group_id: number, data: IConfigurationUpdate, callback?: Callback<IConfiguration>): Promise<IConfiguration>;
-        updateConfigGroup(config_group_id: number, data: IConfigurationUpdate, callback?: Callback<IConfigurationGroup>): Promise<IConfigurationGroup>;
-        updateConfig(config_id: number, data: IConfigurationUpdate, callback?: Callback<IConfiguration>): Promise<IConfiguration>;
-        deleteConfigGroup(config_group_id: number, callback?: Callback<void>): Promise<void>;
-        deleteConfig(config_id: number, callback?: Callback<void>): Promise<void>;
-
-        getMilestone(id: number, callback?: Callback<IMilestone>): Promise<IMilestone>;
-        getMilestones(project_id: number, filters?: IMilestoneFilters, callback?: Callback<IMilestone[]>): Promise<IMilestone[]>;
-        addMilestone(project_id: number, data: INewMilestone, callback?: Callback<IMilestone>): Promise<IMilestone>;
-        updateMilestone(milestone_id: number, data: IMilestoneUpdate, callback?: Callback<IMilestone>): Promise<IMilestone>;
-        deleteMilestone(milestone_id: number, callback?: Callback<void>): Promise<void>;
-
-        getPlan(id: number, callback?: Callback<any>): Promise<any>;
-        getPlans(project_id: number, filters?: any, callback?: Callback<any>): Promise<any>;
-        addPlan(project_id: number, data: any, callback?: Callback<any>): Promise<any>;
-        addPlanEntry(plan_id: number, data: any, callback?: Callback<any>): Promise<any>;
-        updatePlan(plan_id: number, data: any, callback?: Callback<any>): Promise<any>;
-        updatePlanEntry(plan_id: number, entry_id: number, data: any, callback?: Callback<any>): Promise<any>;
-        closePlan(plan_id: number, callback?: Callback<any>): Promise<any>;
-        deletePlan(plan_id: number, callback?: Callback<void>): Promise<void>;
-        deletePlanEntry(plan_id: number, entry_id: number, callback?: Callback<void>): Promise<void>;
-
-        getPriorities(callback?: Callback<IPriority[]>): Promise<IPriority[]>;
-        getProject(id: number, callback?: Callback<IProject>): Promise<IProject>;
-        getProjects(filters?: IProjectFilters, callback?: Callback<IProject[]>): Promise<IProject[]>;
-        addProject(data: IProjectUpdate, callback?: Callback<IProject>): Promise<IProject>;
-        updateProject(project_id: number, data: IProjectUpdate, callback?: Callback<IProject>): Promise<IProject>;
-        deleteProject(project_id: number, callback?: Callback<void>): Promise<void>;
-
-        getResults(test_id: number, filters?: ITestResultFilters, callback?: Callback<ITestResult[]>): Promise<ITestResult[]>;
-        getResultsForCase(run_id: number, case_id: number, filters?: ITestResultFilters, callback?: Callback<ITestResult[]>): Promise<ITestResult[]>;
-        getResultsForRun(run_id: number, filters?: ITestResultsForRunFilters, callback?: Callback<ITestResult[]>): Promise<ITestResult[]>;
-
-        addResult(test_id: number, data: INewTestResult, callback?: Callback<ITestResult>): Promise<ITestResult>;
-        addResultForCase(run_id: number, case_id: number, data: INewTestResult, callback?: Callback<ITestResult>): Promise<ITestResult>;
-        addResults(run_id: number, data: INewTestResults, callback?: Callback<ITestResult[]>): Promise<ITestResult[]>;
-        addResultsForCases(run_id: number, data: INewTestResults, callback?: Callback<ITestResult[]>): Promise<ITestResult[]>;
-        getResultFields(callback?: Callback<ICaseField[]>): Promise<ICaseField[]>;
-
-        getRun(id: number, callback?: Callback<ITestRun>): Promise<ITestRun>;
-        getRuns(project_id: number, filters?: any, callback?: Callback<ITestRun[]>): Promise<ITestRun[]>;
-        addRun(project_id: number, data: INewTestRun, callback?: Callback<ITestRun>): Promise<ITestRun>;
-        updateRun(run_id: number, data: INewTestRun, callback?: Callback<ITestRun>): Promise<ITestRun>;
-        closeRun(run_id: number, callback?: Callback<ITestRun>): Promise<ITestRun>;
-        deleteRun(run_id: number, callback?: Callback<void>): Promise<void>;
-
-        getSection(id: number, callback?: Callback<ISection>): Promise<ISection>;
-        getSections(project_id: number, filters?: any, callback?: Callback<ISection>): Promise<ISection>;
-        addSection(project_id: number, data: INewSection, callback?: Callback<ISection>): Promise<ISection>;
-        updateSection(section_id: number, data: ISectionUpdate, callback?: Callback<ISection>): Promise<ISection>;
-        deleteSection(section_id: number, callback?: Callback<void>): Promise<void>;
-
-        getStatuses(callback?: Callback<ITestStatus[]>): Promise<ITestStatus[]>;
-
-        getSuite(id: number, callback?: Callback<ISuite>): Promise<ISuite>;
-        getSuites(project_id: number, callback?: Callback<ISuite[]>): Promise<ISuite[]>;
-        addSuite(project_id: number, data: INewSuite, callback?: Callback<ISuite>): Promise<ISuite>;
-        updateSuite(suite_id: number, data: INewSuite, callback?: Callback<ISuite>): Promise<ISuite>;
-        deleteSuite(suite_id: number, callback?: Callback<void>): Promise<void>;
-
-        getTemplates(project_id: number, callback?: Callback<ITemplate[]>): Promise<ITemplate[]>;
-
-        getTest(id: number, callback?: Callback<ITest>): Promise<ITest>;
-        getTests(run_id: number, filters?: {status_id: number | number[]}, callback?: Callback<ITest[]>): Promise<ITest[]>;
-
-        getUser(id: number, callback?: Callback<ITestrailUser>): Promise<ITestrailUser>;
-        getUserByEmail(email: string, callback?: Callback<ITestrailUser>): Promise<ITestrailUser>;
-        getUsers(callback?: Callback<ITestrailUser[]>): Promise<ITestrailUser[]>;
-    }
-
-    var _: TestrailApiClient;
-    export = _;
 }
+
+export = TestrailApiClient;
