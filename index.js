@@ -62,6 +62,7 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
       if(err) {
         return callback(err);
       }
+      var responseBody = body === '' ? JSON.stringify({}) : body;
       if(res.statusCode != 200) {
         var errData = body;
         try {
@@ -69,7 +70,7 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
         } catch (err) {}
         return callback(errData);
       }
-      return callback(null, JSON.parse(body));
+      return callback(null, JSON.parse(responseBody));
     }).auth(this.user, this.password, true);
   }
   else {
@@ -78,6 +79,7 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
         if(err) {
           return reject(err);
         }
+        var responseBody = body === '' ? JSON.stringify({}) : body;
         if(res.statusCode != 200) {
           var errData = body;
           try {
@@ -85,7 +87,7 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
           } catch (err) {}
           return reject(errData);
         }
-        return resolve(JSON.parse(body));
+        return resolve(JSON.parse(responseBody));
       }).auth(this.user, this.password, true);
     }.bind(this));
   }
