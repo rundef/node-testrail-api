@@ -67,7 +67,9 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
         var errData = body;
         try {
           errData = JSON.parse(body);
-        } catch (err) {}
+        } catch (err) {
+          return callback(err.message || err);
+        }
         return callback(errData, res);
       }
       return callback(null, res, JSON.parse(responseBody));
@@ -84,7 +86,9 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
           var errData = body;
           try {
             errData = JSON.parse(body);
-          } catch (err) {}
+          } catch (err) {
+            return callback(err.message || err);
+          }
           return reject({ message: errData, response: res });
         }
         return resolve({ response: res, body: JSON.parse(responseBody) });

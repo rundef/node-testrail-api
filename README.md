@@ -32,7 +32,7 @@ function (err, response, body)
 
 `response` contains data like the status code.
 
-`body` contains the result the server sent back.
+`body` contains the response body the server sent back.
 
 ## Promises
 
