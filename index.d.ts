@@ -424,7 +424,7 @@ declare namespace TestrailApiClient {
     }
 
     interface Callback<T> {
-        (error: any, result: T): void;
+        (error: any, response: any, result: T): void;
     }
 }
 
