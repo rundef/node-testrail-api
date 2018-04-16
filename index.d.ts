@@ -93,7 +93,7 @@ declare namespace TestrailApiClient {
         created_by: number;
         created_on: number;
         defects: string;
-        elapsed: number;
+        elapsed: string;
         id: number;
         status_id: number;
         test_id: number;
@@ -106,7 +106,7 @@ declare namespace TestrailApiClient {
         status_id: number;
         comment?: string;
         version?: string;
-        elapsed?: number;
+        elapsed?: string;
         defects?: string;
         assignedto_id?: number;
 
