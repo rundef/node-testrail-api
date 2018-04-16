@@ -1,91 +1,94 @@
 import t = TestrailApiClient;
+import { Response } from 'request'
 
 declare class TestrailApiClient {
     constructor(options: {host: string, user: string, password: string});
 
-    getCase<T extends t.ICase>(id: number, callback?: t.Callback<t.ICase>): Promise<t.ICase>;
-    getCases<T extends t.ICase>(project_id: number, filters?: t.ICaseFilters, callback?: t.Callback<T[]>): Promise<T[]>;
-    addCase<T extends t.ICaseUpdate, U extends t.ICase>(section_id: number, data: T, callback?: t.Callback<U>): Promise<U>;
-    updateCase<T extends t.ICaseUpdate, U extends t.ICase>(case_id: number, data: T, callback?: t.Callback<U>): Promise<U>;
-    deleteCase(case_id: number, callback?: t.Callback<void>): Promise<void>;
+    getCase<T extends t.ICase>(id: number, callback?: t.Callback<t.ICase>): t.PromiseResponse<t.ICase>;
+    getCases<T extends t.ICase>(project_id: number, filters?: t.ICaseFilters, callback?: t.Callback<T[]>): t.PromiseResponse<T[]>;
+    addCase<T extends t.ICaseUpdate, U extends t.ICase>(section_id: number, data: T, callback?: t.Callback<U>): t.PromiseResponse<U>;
+    updateCase<T extends t.ICaseUpdate, U extends t.ICase>(case_id: number, data: T, callback?: t.Callback<U>): t.PromiseResponse<U>;
+    deleteCase(case_id: number, callback?: t.Callback<void>): t.PromiseResponse<void>;
 
-    getCaseFields(callback?: t.Callback<t.ICaseField[]>): Promise<t.ICaseField[]>;
-    getCaseTypes(callback?: t.Callback<t.ICaseType[]>): Promise<t.ICaseType[]>;
+    getCaseFields(callback?: t.Callback<t.ICaseField[]>): t.PromiseResponse<t.ICaseField[]>;
+    getCaseTypes(callback?: t.Callback<t.ICaseType[]>): t.PromiseResponse<t.ICaseType[]>;
 
-    getConfigs(project_id: number, callback?: t.Callback<t.IConfigurationGroup>): Promise<t.IConfigurationGroup>;
-    addConfigGroup(project_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfigurationGroup>): Promise<t.IConfigurationGroup>;
-    addConfig(config_group_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfiguration>): Promise<t.IConfiguration>;
-    updateConfigGroup(config_group_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfigurationGroup>): Promise<t.IConfigurationGroup>;
-    updateConfig(config_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfiguration>): Promise<t.IConfiguration>;
-    deleteConfigGroup(config_group_id: number, callback?: t.Callback<void>): Promise<void>;
-    deleteConfig(config_id: number, callback?: t.Callback<void>): Promise<void>;
+    getConfigs(project_id: number, callback?: t.Callback<t.IConfigurationGroup>): t.PromiseResponse<t.IConfigurationGroup>;
+    addConfigGroup(project_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfigurationGroup>): t.PromiseResponse<t.IConfigurationGroup>;
+    addConfig(config_group_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfiguration>): t.PromiseResponse<t.IConfiguration>;
+    updateConfigGroup(config_group_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfigurationGroup>): t.PromiseResponse<t.IConfigurationGroup>;
+    updateConfig(config_id: number, data: t.IConfigurationUpdate, callback?: t.Callback<t.IConfiguration>): t.PromiseResponse<t.IConfiguration>;
+    deleteConfigGroup(config_group_id: number, callback?: t.Callback<void>): t.PromiseResponse<void>;
+    deleteConfig(config_id: number, callback?: t.Callback<void>): t.PromiseResponse<void>;
 
-    getMilestone(id: number, callback?: t.Callback<t.IMilestone>): Promise<t.IMilestone>;
-    getMilestones(project_id: number, filters?: t.IMilestoneFilters, callback?: t.Callback<t.IMilestone[]>): Promise<t.IMilestone[]>;
-    addMilestone(project_id: number, data: t.INewMilestone, callback?: t.Callback<t.IMilestone>): Promise<t.IMilestone>;
-    updateMilestone(milestone_id: number, data: t.IMilestoneUpdate, callback?: t.Callback<t.IMilestone>): Promise<t.IMilestone>;
-    deleteMilestone(milestone_id: number, callback?: t.Callback<void>): Promise<void>;
+    getMilestone(id: number, callback?: t.Callback<t.IMilestone>): t.PromiseResponse<t.IMilestone>;
+    getMilestones(project_id: number, filters?: t.IMilestoneFilters, callback?: t.Callback<t.IMilestone[]>): t.PromiseResponse<t.IMilestone[]>;
+    addMilestone(project_id: number, data: t.INewMilestone, callback?: t.Callback<t.IMilestone>): t.PromiseResponse<t.IMilestone>;
+    updateMilestone(milestone_id: number, data: t.IMilestoneUpdate, callback?: t.Callback<t.IMilestone>): t.PromiseResponse<t.IMilestone>;
+    deleteMilestone(milestone_id: number, callback?: t.Callback<void>): t.PromiseResponse<void>;
 
-    getPlan(id: number, callback?: t.Callback<any>): Promise<any>;
-    getPlans(project_id: number, filters?: any, callback?: t.Callback<any>): Promise<any>;
-    addPlan(project_id: number, data: any, callback?: t.Callback<any>): Promise<any>;
-    addPlanEntry(plan_id: number, data: any, callback?: t.Callback<any>): Promise<any>;
-    updatePlan(plan_id: number, data: any, callback?: t.Callback<any>): Promise<any>;
-    updatePlanEntry(plan_id: number, entry_id: number, data: any, callback?: t.Callback<any>): Promise<any>;
-    closePlan(plan_id: number, callback?: t.Callback<any>): Promise<any>;
-    deletePlan(plan_id: number, callback?: t.Callback<void>): Promise<void>;
-    deletePlanEntry(plan_id: number, entry_id: number, callback?: t.Callback<void>): Promise<void>;
+    getPlan(id: number, callback?: t.Callback<any>): t.PromiseResponse<any>;
+    getPlans(project_id: number, filters?: any, callback?: t.Callback<any>): t.PromiseResponse<any>;
+    addPlan(project_id: number, data: any, callback?: t.Callback<any>): t.PromiseResponse<any>;
+    addPlanEntry(plan_id: number, data: any, callback?: t.Callback<any>): t.PromiseResponse<any>;
+    updatePlan(plan_id: number, data: any, callback?: t.Callback<any>): t.PromiseResponse<any>;
+    updatePlanEntry(plan_id: number, entry_id: number, data: any, callback?: t.Callback<any>): t.PromiseResponse<any>;
+    closePlan(plan_id: number, callback?: t.Callback<any>): t.PromiseResponse<any>;
+    deletePlan(plan_id: number, callback?: t.Callback<void>): t.PromiseResponse<void>;
+    deletePlanEntry(plan_id: number, entry_id: number, callback?: t.Callback<void>): t.PromiseResponse<void>;
 
-    getPriorities(callback?: t.Callback<t.IPriority[]>): Promise<t.IPriority[]>;
+    getPriorities(callback?: t.Callback<t.IPriority[]>): t.PromiseResponse<t.IPriority[]>;
 
-    getProject(id: number, callback?: t.Callback<t.IProject>): Promise<t.IProject>;
-    getProjects(filters?: t.IProjectFilters, callback?: t.Callback<t.IProject[]>): Promise<t.IProject[]>;
-    addProject(data: t.IProjectUpdate, callback?: t.Callback<t.IProject>): Promise<t.IProject>;
-    updateProject(project_id: number, data: t.IProjectUpdate, callback?: t.Callback<t.IProject>): Promise<t.IProject>;
-    deleteProject(project_id: number, callback?: t.Callback<void>): Promise<void>;
+    getProject(id: number, callback?: t.Callback<t.IProject>): t.PromiseResponse<t.IProject>;
+    getProjects(filters?: t.IProjectFilters, callback?: t.Callback<t.IProject[]>): t.PromiseResponse<t.IProject[]>;
+    addProject(data: t.IProjectUpdate, callback?: t.Callback<t.IProject>): t.PromiseResponse<t.IProject>;
+    updateProject(project_id: number, data: t.IProjectUpdate, callback?: t.Callback<t.IProject>): t.PromiseResponse<t.IProject>;
+    deleteProject(project_id: number, callback?: t.Callback<void>): t.PromiseResponse<void>;
 
-    getResults<T extends t.ITestResult>(test_id: number, filters?: t.ITestResultFilters, callback?: t.Callback<T[]>): Promise<T[]>;
-    getResultsForCase<T extends t.ITestResult>(run_id: number, case_id: number, filters?: t.ITestResultFilters, callback?: t.Callback<T[]>): Promise<T[]>;
-    getResultsForRun<T extends t.ITestResult>(run_id: number, filters?: t.ITestResultsForRunFilters, callback?: t.Callback<T[]>): Promise<T[]>;
-    addResult<T extends t.INewTestResult, U extends t.ITestResult>(test_id: number, data: T, callback?: t.Callback<U>): Promise<U>;
-    addResultForCase<T extends t.INewTestResult, U extends t.ITestResult>(run_id: number, case_id: number, data: t.INewTestResult, callback?: t.Callback<t.ITestResult>): Promise<t.ITestResult>;
-    addResults<T extends t.INewTestResult, U extends t.ITestResult>(run_id: number, data: t.INewTestResults<T>, callback?: t.Callback<U[]>): Promise<U[]>;
-    addResultsForCases<T extends t.INewTestResult, U extends t.ITestResult>(run_id: number, data: t.INewTestResults<T>, callback?: t.Callback<U[]>): Promise<U[]>;
-    getResultFields(callback?: t.Callback<t.ICaseField[]>): Promise<t.ICaseField[]>;
+    getResults<T extends t.ITestResult>(test_id: number, filters?: t.ITestResultFilters, callback?: t.Callback<T[]>): t.PromiseResponse<T[]>;
+    getResultsForCase<T extends t.ITestResult>(run_id: number, case_id: number, filters?: t.ITestResultFilters, callback?: t.Callback<T[]>): t.PromiseResponse<T[]>;
+    getResultsForRun<T extends t.ITestResult>(run_id: number, filters?: t.ITestResultsForRunFilters, callback?: t.Callback<T[]>): t.PromiseResponse<T[]>;
+    addResult<T extends t.INewTestResult, U extends t.ITestResult>(test_id: number, data: T, callback?: t.Callback<U>): t.PromiseResponse<U>;
+    addResultForCase<T extends t.INewTestResult, U extends t.ITestResult>(run_id: number, case_id: number, data: t.INewTestResult, callback?: t.Callback<t.ITestResult>): t.PromiseResponse<t.ITestResult>;
+    addResults<T extends t.INewTestResult, U extends t.ITestResult>(run_id: number, data: T[], callback?: t.Callback<U[]>): t.PromiseResponse<U[]>;
+    addResultsForCases<T extends t.INewTestResult, U extends t.ITestResult>(run_id: number, data: T[], callback?: t.Callback<U[]>): t.PromiseResponse<U[]>;
+    getResultFields(callback?: t.Callback<t.ICaseField[]>): t.PromiseResponse<t.ICaseField[]>;
 
-    getRun(id: number, callback?: t.Callback<t.ITestRun>): Promise<t.ITestRun>;
-    getRuns(project_id: number, filters?: any, callback?: t.Callback<t.ITestRun[]>): Promise<t.ITestRun[]>;
-    addRun(project_id: number, data: t.INewTestRun, callback?: t.Callback<t.ITestRun>): Promise<t.ITestRun>;
-    updateRun(run_id: number, data: t.INewTestRun, callback?: t.Callback<t.ITestRun>): Promise<t.ITestRun>;
-    closeRun(run_id: number, callback?: t.Callback<t.ITestRun>): Promise<t.ITestRun>;
-    deleteRun(run_id: number, callback?: t.Callback<void>): Promise<void>;
+    getRun(id: number, callback?: t.Callback<t.ITestRun>): t.PromiseResponse<t.ITestRun>;
+    getRuns(project_id: number, filters?: any, callback?: t.Callback<t.ITestRun[]>): t.PromiseResponse<t.ITestRun[]>;
+    addRun(project_id: number, data: t.INewTestRun, callback?: t.Callback<t.ITestRun>): t.PromiseResponse<t.ITestRun>;
+    updateRun(run_id: number, data: t.INewTestRun, callback?: t.Callback<t.ITestRun>): t.PromiseResponse<t.ITestRun>;
+    closeRun(run_id: number, callback?: t.Callback<t.ITestRun>): t.PromiseResponse<t.ITestRun>;
+    deleteRun(run_id: number, callback?: t.Callback<void>): t.PromiseResponse<void>;
 
-    getSection(id: number, callback?: t.Callback<t.ISection>): Promise<t.ISection>;
-    getSections(project_id: number, filters?: any, callback?: t.Callback<t.ISection>): Promise<t.ISection[]>;
-    addSection(project_id: number, data: t.INewSection, callback?: t.Callback<t.ISection>): Promise<t.ISection>;
-    updateSection(section_id: number, data: t.ISectionUpdate, callback?: t.Callback<t.ISection>): Promise<t.ISection>;
-    deleteSection(section_id: number, callback?: t.Callback<void>): Promise<void>;
+    getSection(id: number, callback?: t.Callback<t.ISection>): t.PromiseResponse<t.ISection>;
+    getSections(project_id: number, filters?: any, callback?: t.Callback<t.ISection>): t.PromiseResponse<t.ISection[]>;
+    addSection(project_id: number, data: t.INewSection, callback?: t.Callback<t.ISection>): t.PromiseResponse<t.ISection>;
+    updateSection(section_id: number, data: t.ISectionUpdate, callback?: t.Callback<t.ISection>): t.PromiseResponse<t.ISection>;
+    deleteSection(section_id: number, callback?: t.Callback<void>): t.PromiseResponse<void>;
 
-    getStatuses(callback?: t.Callback<t.ITestStatus[]>): Promise<t.ITestStatus[]>;
+    getStatuses(callback?: t.Callback<t.ITestStatus[]>): t.PromiseResponse<t.ITestStatus[]>;
 
-    getSuite(id: number, callback?: t.Callback<t.ISuite>): Promise<t.ISuite>;
-    getSuites(project_id: number, callback?: t.Callback<t.ISuite[]>): Promise<t.ISuite[]>;
-    addSuite(project_id: number, data: t.INewSuite, callback?: t.Callback<t.ISuite>): Promise<t.ISuite>;
-    updateSuite(suite_id: number, data: t.INewSuite, callback?: t.Callback<t.ISuite>): Promise<t.ISuite>;
-    deleteSuite(suite_id: number, callback?: t.Callback<void>): Promise<void>;
+    getSuite(id: number, callback?: t.Callback<t.ISuite>): t.PromiseResponse<t.ISuite>;
+    getSuites(project_id: number, callback?: t.Callback<t.ISuite[]>): t.PromiseResponse<t.ISuite[]>;
+    addSuite(project_id: number, data: t.INewSuite, callback?: t.Callback<t.ISuite>): t.PromiseResponse<t.ISuite>;
+    updateSuite(suite_id: number, data: t.INewSuite, callback?: t.Callback<t.ISuite>): t.PromiseResponse<t.ISuite>;
+    deleteSuite(suite_id: number, callback?: t.Callback<void>): t.PromiseResponse<void>;
 
-    getTemplates(project_id: number, callback?: t.Callback<t.ITemplate[]>): Promise<t.ITemplate[]>;
+    getTemplates(project_id: number, callback?: t.Callback<t.ITemplate[]>): t.PromiseResponse<t.ITemplate[]>;
 
-    getTest<T extends t.ITest>(id: number, callback?: t.Callback<T>): Promise<T>;
-    getTests<T extends t.ITest>(run_id: number, filters: { status_id?: number | number[] }, callback?: t.Callback<T[]>): Promise<T[]>;
+    getTest<T extends t.ITest>(id: number, callback?: t.Callback<T>): t.PromiseResponse<T>;
+    getTests<T extends t.ITest>(run_id: number, filters: { status_id?: number | number[] }, callback?: t.Callback<T[]>): t.PromiseResponse<T[]>;
 
-    getUser(id: number, callback?: t.Callback<t.ITestrailUser>): Promise<t.ITestrailUser>;
-    getUserByEmail(email: string, callback?: t.Callback<t.ITestrailUser>): Promise<t.ITestrailUser>;
-    getUsers(callback?: t.Callback<t.ITestrailUser[]>): Promise<t.ITestrailUser[]>;
+    getUser(id: number, callback?: t.Callback<t.ITestrailUser>): t.PromiseResponse<t.ITestrailUser>;
+    getUserByEmail(email: string, callback?: t.Callback<t.ITestrailUser>): t.PromiseResponse<t.ITestrailUser>;
+    getUsers(callback?: t.Callback<t.ITestrailUser[]>): t.PromiseResponse<t.ITestrailUser[]>;
 }
 
 declare namespace TestrailApiClient {
     type CustomFieldType = boolean | string | number | number[] | any[];
+
+    type PromiseResponse<T> = Promise<{ response: Response, body: T }>
 
     interface ITestResult {
         assignedto_id: number;
@@ -424,7 +427,7 @@ declare namespace TestrailApiClient {
     }
 
     interface Callback<T> {
-        (error: any, response: any, result: T): void;
+        (error: any, response: Response, result: T): void;
     }
 }
 
