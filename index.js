@@ -330,11 +330,11 @@ TestRail.prototype.addResultForCase = function (run_id, case_id, data, callback)
 };
 
 TestRail.prototype.addResults = function (run_id, data, callback) {
-  return this.apiPost('add_results/' + run_id, JSON.stringify(data), callback);
+  return this.apiPost('add_results/' + run_id, JSON.stringify({ results: data }), callback);
 };
 
 TestRail.prototype.addResultsForCases = function (run_id, data, callback) {
-  return this.apiPost('add_results_for_cases/' + run_id, JSON.stringify(data), callback);
+  return this.apiPost('add_results_for_cases/' + run_id, JSON.stringify({ results: data }), callback);
 };
 
 // ----- Result Fields -----
