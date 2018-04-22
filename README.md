@@ -445,6 +445,14 @@ testrail.updateRun(/*RUN_ID=*/1, /*CONTENT=*/{}, function (err, response, run) {
 });
 ```
 
+> Close a run
+
+```javascript
+testrail.closeRun(/*RUN_ID=*/1, function (err, response, run) {
+  console.log(run);
+});
+```
+
 > Delete a run
 
 ```javascript
