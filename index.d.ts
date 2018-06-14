@@ -400,8 +400,8 @@ declare namespace TestrailApiClient {
     }
 
     interface IMilestoneUpdate extends INewMilestone {
-        is_completed?: boolean;
-        is_started?: boolean;
+        is_completed?: number;
+        is_started?: number;
     }
 
     interface IMilestoneFilters {
