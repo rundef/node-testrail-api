@@ -304,7 +304,7 @@ declare namespace TestrailApiClient {
         failed_count: number;
         id: number;
         include_all: boolean;
-        is_completed: boolean;
+        is_completed: number;
         milestone_id: number;
         plan_id: number;
         name: string;
@@ -342,7 +342,7 @@ declare namespace TestrailApiClient {
         announcment: string;
         completed_on: number;
         id: number;
-        is_completed: boolean;
+        is_completed: number;
         name: string;
         show_announcement: boolean;
         suite_mode: SuiteMode;
@@ -380,8 +380,8 @@ declare namespace TestrailApiClient {
         description: string;
         due_on: number;
         id: number;
-        is_completed: boolean;
-        is_started: boolean;
+        is_completed: number;
+        is_started: number;
         milestones?: IMilestone[];
         name: string;
         parent_id: number;
@@ -405,8 +405,8 @@ declare namespace TestrailApiClient {
     }
 
     interface IMilestoneFilters {
-        is_completed: boolean;
-        is_started: boolean;
+        is_completed: number;
+        is_started: number;
     }
 
     interface IConfigurationGroup {
