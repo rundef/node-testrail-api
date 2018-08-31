@@ -86,7 +86,7 @@ declare class TestrailApiClient {
 }
 
 declare namespace TestrailApiClient {
-    type CustomFieldType = boolean | string | number | number[] | any[];
+    type CustomFieldType = boolean | string | number | number[] | any[] | undefined;
 
     type PromiseResponse<T> = Promise<{ response: Response, body: T }>
 
