@@ -383,8 +383,8 @@ TestRail.prototype.getSection = function (id, callback) {
   return this.apiGet('get_section/' + id, callback);
 };
 
-TestRail.prototype.getSections = function (project_id, suite_id, filters, callback) {
-  var uri = 'get_sections/' + project_id  + '&suite_id=' + suite_id;
+TestRail.prototype.getSections = function (project_id,  filters, callback) {
+  var uri = 'get_sections/' + project_id;
 
   if(typeof filters == 'function') {
     callback = filters;
