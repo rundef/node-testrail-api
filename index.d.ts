@@ -364,7 +364,7 @@ declare namespace TestrailApiClient {
     }
 
     interface IProjectFilters {
-        is_completed: boolean;
+        is_completed: number;
     }
 
     interface IPriority {
