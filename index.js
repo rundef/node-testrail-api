@@ -45,6 +45,7 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
   }
 
   var requestArguments = {
+    rejectUnauthorized: false, //added this line to solve Error: unable to verify the first certificate] code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'
     uri: url,
     headers: {
       'content-type': 'application/json',
