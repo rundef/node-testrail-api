@@ -51,7 +51,7 @@ declare class TestrailApiClient {
     addResult<T extends t.INewTestResult, U extends t.ITestResult>(test_id: number, data: T, callback?: t.Callback<U>): t.PromiseResponse<U>;
     addResultForCase<T extends t.INewTestResult, U extends t.ITestResult>(run_id: number, case_id: number, data: t.INewTestResult, callback?: t.Callback<t.ITestResult>): t.PromiseResponse<t.ITestResult>;
     addResults<T extends t.INewTestResult, U extends t.ITestResult>(run_id: number, data: T[], callback?: t.Callback<U[]>): t.PromiseResponse<U[]>;
-    addResultsForCases<T extends t.INewTestResult, U extends t.ITestResult>(run_id: number, data: T[], callback?: t.Callback<U[]>): t.PromiseResponse<U[]>;
+    addResultsForCases<T extends t.INewTestResults, U extends t.ITestResult>(run_id: number, data: T[], callback?: t.Callback<U[]>): t.PromiseResponse<U[]>;
     getResultFields(callback?: t.Callback<t.ICaseField[]>): t.PromiseResponse<t.ICaseField[]>;
 
     getRun(id: number, callback?: t.Callback<t.ITestRun>): t.PromiseResponse<t.ITestRun>;
