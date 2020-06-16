@@ -317,11 +317,11 @@ declare namespace TestrailApiClient {
     }
 
     interface INewTestRun {
-        suite_id: number;
-        name: string;
-        description: string;
-        milestone_id: number;
-        assignedto_id: number;
+        suite_id?: number;
+        name?: string;
+        description?: string;
+        milestone_id?: number;
+        assignedto_id?: number;
         include_all: boolean;
         case_ids: number[];
     }
