@@ -284,6 +284,16 @@ TestRail.prototype.deleteProject = function (project_id, callback) {
   return this.apiPost('delete_project/' + project_id, callback);
 };
 
+// ----- Reports -----
+
+TestRail.prototype.getReports = function (project_id, callback) {
+  return this.apiGet('get_reports/' + project_id, callback);
+};
+
+TestRail.prototype.runReport = function (report_template_id, callback) {
+  return this.apiGet('run_report/' + report_template_id, callback);
+};
+
 // ----- Results -----
 
 TestRail.prototype.getResults = function (test_id, filters, callback) {
