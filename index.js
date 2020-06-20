@@ -50,8 +50,7 @@ TestRail.prototype._callAPI = function (method, url, queryVariables, body, callb
     headers: {
       'content-type': 'application/json',
       'accept': 'application/json'
-    },
-    rejectUnauthorized: false
+    }
   };
 
   if(body != null) {
@@ -282,6 +281,16 @@ TestRail.prototype.updateProject = function (project_id, data, callback) {
 
 TestRail.prototype.deleteProject = function (project_id, callback) {
   return this.apiPost('delete_project/' + project_id, callback);
+};
+
+// ----- Reports -----
+
+TestRail.prototype.getReports = function (project_id, callback) {
+  return this.apiGet('get_reports/' + project_id, callback);
+};
+
+TestRail.prototype.runReport = function (report_id, callback) {
+  return this.apiGet('run_report/' + report_id, callback);
 };
 
 // ----- Results -----
