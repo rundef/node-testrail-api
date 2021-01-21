@@ -82,7 +82,7 @@ declare class TestrailApiClient {
 
     getUser(id: number, callback?: t.Callback<t.ITestrailUser>): t.PromiseResponse<t.ITestrailUser>;
     getUserByEmail(email: string, callback?: t.Callback<t.ITestrailUser>): t.PromiseResponse<t.ITestrailUser>;
-    getUsers(callback?: t.Callback<t.ITestrailUser[]>): t.PromiseResponse<t.ITestrailUser[]>;
+    getUsers(project_id?: number, callback?: t.Callback<t.ITestrailUser[]>): t.PromiseResponse<t.ITestrailUser[]>;
 }
 
 declare namespace TestrailApiClient {
