@@ -470,8 +470,19 @@ TestRail.prototype.getUserByEmail = function (email, callback) {
   return this.apiGet('get_user_by_email', {email: email}, callback);
 };
 
-TestRail.prototype.getUsers = function (callback) {
-  return this.apiGet('get_users', callback);
+TestRail.prototype.getUsers = function (project_id, callback) {
+  var url = 'get_users';
+
+  if (typeof project_id === 'function') {
+    callback = project_id;
+    project_id = undefined;
+  }
+
+  if (project_id !== undefined) {
+    url += '/' + project_id;
+  }
+
+  return this.apiGet(url, callback);
 };
 
 // ----------

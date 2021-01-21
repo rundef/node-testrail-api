@@ -41,6 +41,11 @@ describe('users api', function() {
       { 'id': 2, 'name': 'Ciaran Davenport' }
    ]);
 
+  nock('https://rundef.testrail.com')
+    .get(testrail.uri + 'get_users/10')
+    .reply(200, [
+      { 'id': 1, 'name': 'Alexis Gonzalez' },
+    ]);
 
 
 
@@ -76,6 +81,15 @@ describe('users api', function() {
 
   it('Get all', function (done) {
     testrail.getUsers(function (err, response, body) {
+      expect(err).to.be.null;
+      expect(response).to.be.an.object;
+      expect(body).to.be.an.array;
+      done();
+    });
+  });
+
+  it('Get all by project', function (done) {
+    testrail.getUsers(10, function (err, response, body) {
       expect(err).to.be.null;
       expect(response).to.be.an.object;
       expect(body).to.be.an.array;
