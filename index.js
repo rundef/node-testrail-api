@@ -474,6 +474,11 @@ TestRail.prototype.getUsers = function (callback) {
   return this.apiGet('get_users', callback);
 };
 
+// ----- Reports ----- 
+TestRail.prototype.runReport = function (template_id, callback) {
+  return this.apiGet('run_report/' + template_id, callback);
+};
+
 // ----------
 
 
